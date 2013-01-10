@@ -21,11 +21,19 @@ namespace Nizzle.Agent
             }
 
             var client = new HttpClient(serverUri) {Request = {Accept = HttpContentTypes.ApplicationJson}};
-            var response = client.Get("hello").StaticBody<HelloResponse>();
+            var response = client.Get("hello", new HelloRequest
+                                                   {
+                                                       Name = "Mogens"
+                                                   }).StaticBody<HelloResponse>();
             Console.WriteLine("Got response: {0}", response.Text);
 
             return 0;
         }
+    }
+
+    public class HelloRequest
+    {
+        public string Name { get; set; }
     }
 
     public class HelloResponse

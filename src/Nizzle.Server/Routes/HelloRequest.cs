@@ -4,6 +4,7 @@ namespace Nizzle.Server.Routes
 {
     public class HelloRequest
     {
+        public string Name { get; set; }
     }
 
     public class HelloResponse
@@ -15,7 +16,7 @@ namespace Nizzle.Server.Routes
     {
         public HelloResponse Any(HelloRequest request)
         {
-            return new HelloResponse {Text = "wootamafook!!"};
+            return new HelloResponse {Text = string.Format("Hello {0}", request.Name)};
         }
     }
 }

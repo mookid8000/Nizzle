@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Reflection;
 using EasyHttp.Http;
+using Nizzle.Messages;
 using log4net;
 
 namespace Nizzle.Agent
@@ -29,15 +30,5 @@ namespace Nizzle.Agent
 
             return 0;
         }
-    }
-
-    public class HelloRequest
-    {
-        public string Name { get; set; }
-    }
-
-    public class HelloResponse
-    {
-        public string Text { get; set; }
     }
 }

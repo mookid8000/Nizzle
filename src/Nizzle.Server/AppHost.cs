@@ -1,4 +1,5 @@
 ﻿using Funq;
+using Nizzle.Messages;
 using Nizzle.Server.Routes;
 using ServiceStack.Common.Web;
 using ServiceStack.WebHost.Endpoints;
@@ -17,8 +18,7 @@ namespace Nizzle.Server
 
         public override void Configure(Container container)
         {
-            Routes
-                .Add<HelloRequest>("/hello");
+            Routes.Add<HelloRequest>("/hello");
         }
     }
 }

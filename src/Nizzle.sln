@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{70A5B6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nizzle.Messages", "Nizzle.Messages\Nizzle.Messages.csproj", "{A1517D89-C9EB-449B-873B-F88E4E44E2B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nizzle.Tests", "Nizzle.Tests\Nizzle.Tests.csproj", "{4C27865C-AC2F-4E7D-9AD3-A2CC9FFB3CA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{A1517D89-C9EB-449B-873B-F88E4E44E2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1517D89-C9EB-449B-873B-F88E4E44E2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1517D89-C9EB-449B-873B-F88E4E44E2B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C27865C-AC2F-4E7D-9AD3-A2CC9FFB3CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C27865C-AC2F-4E7D-9AD3-A2CC9FFB3CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C27865C-AC2F-4E7D-9AD3-A2CC9FFB3CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C27865C-AC2F-4E7D-9AD3-A2CC9FFB3CA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

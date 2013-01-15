@@ -1,0 +1,19 @@
+﻿ul.agents {
+    list-style: none;
+}
+
+ul.agents li {
+    float: left;
+    padding: .2em;
+    margin: .2em;
+    border: 1px solid black;
+}
+
+.agent h1 {
+    font-size: 1.4em;
+    margin: 0;
+    padding: 0;
+    line-height: 1.4em;
+    background: black;
+    color: white;
+}

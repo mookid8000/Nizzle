@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+    <head>
+        <meta charset="utf-8">
+        <title>Nizzle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>
+        <link rel="stylesheet" href="css/nizzle.css" media="screen"/>
+        <style>
+            body {
+                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
+    </head>
+    
+    <script type="text/javascript">
+        function AgentListController($scope) {
+            $scope.agents = [
+                {
+                    "id": "app",
+                    "machine": "DKVMAPP03"
+                },
+                {
+                    "id": "db",
+                    "machine": "DKVMSQL01"
+                }
+            ];
+        }
+    </script>
+
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    
+                    <a class="brand" href="#">Nizzle</a>
+                    
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Overview</a></li>
+                            <li><a href="#about">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1>Overview</h1>
+            
+            <div class="row" ng-controller="AgentListController">
+                <ul class="agents">
+                    <li ng-repeat="agent in agents">
+                        <div class="agent">
+                            <h1>{{agent.id}}</h1>
+                            <p>{{agent.machine}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+    </body>
+</html>

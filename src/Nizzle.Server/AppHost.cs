@@ -19,6 +19,7 @@ namespace Nizzle.Server
         public override void Configure(Container container)
         {
             Routes.Add<HelloRequest>("/hello");
+            Routes.Add<EmptyRequest>("/overview");
 
             container.RegisterAs<StandardHelloFormatter, IFormatHellos>();
         }

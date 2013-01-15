@@ -1,5 +1,7 @@
 ﻿ul.agents {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 ul.agents li {
@@ -7,6 +9,8 @@ ul.agents li {
     padding: .2em;
     margin: .2em;
     border: 1px solid black;
+    margin: 0.2em;
+    padding: 0;
 }
 
 .agent h1 {
@@ -14,6 +18,19 @@ ul.agents li {
     margin: 0;
     padding: 0;
     line-height: 1.4em;
+    background: black;
+    color: white;
+}
+
+.activeAgent {
+    border: 1px solid black;
+    margin: 0.2em;
+    padding: 0;
+}
+
+.activeAgent h1 {
+    margin: 0;
+    padding: 0;
     background: black;
     color: white;
 }

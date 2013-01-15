@@ -17,14 +17,48 @@
         function AgentListController($scope) {
             $scope.agents = [
                 {
-                    "id": "app",
+                    "id": "1",
+                    "name": "app",
                     "machine": "DKVMAPP03"
                 },
                 {
-                    "id": "db",
+                    "id": "2",
+                    "name": "background",
+                    "machine": "DKKFEJIFE05"
+                },
+                {
+                    "id": "3",
+                    "name": "app2",
+                    "machine": "DKVMAPP03"
+                },
+                {
+                    "id": "4",
+                    "name": "background2",
+                    "machine": "DKIFE05"
+                },
+                {
+                    "id": "5",
+                    "name": "sql",
                     "machine": "DKVMSQL01"
+                },
+                {
+                    "id": "6",
+                    "name": "mongo",
+                    "machine": "DKMONGO01"
                 }
             ];
+
+            $scope.setActiveAgent = function(id) {
+                var index = 0;
+                
+                for (index = 0; index < $scope.agents.length; index++) {
+                    if ($scope.agents[index].id === id) break;
+                }
+
+                $scope.activeAgentIndex = index;
+            };
+
+            $scope.activeAgentIndex = 0;
         }
     </script>
 
@@ -53,15 +87,22 @@
         <div class="container">
             <h1>Overview</h1>
             
-            <div class="row" ng-controller="AgentListController">
-                <ul class="agents">
-                    <li ng-repeat="agent in agents">
-                        <div class="agent">
-                            <h1>{{agent.id}}</h1>
-                            <p>{{agent.machine}}</p>
-                        </div>
-                    </li>
-                </ul>
+            <div ng-controller="AgentListController">
+                <div class="row">
+                    <div class="span12">
+                        <ul class="agents">
+                            <li ng-repeat="agent in agents">
+                                <div class="agent" ng-click="setActiveAgent(agent.id)">
+                                    <h1>{{agent.name}}</h1>
+                                    <p>{{agent.machine}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <h1>{{agents[activeAgentIndex].name}}</h1>
+                </div>
             </div>
         </div>
 

@@ -34,3 +34,7 @@ ul.agents li {
     background: black;
     color: white;
 }
+
+#uploadForm {
+    margin-left: 2em;
+}

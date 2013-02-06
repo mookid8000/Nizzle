@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <title>Nizzle</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>
-        <link rel="stylesheet" href="css/nizzle.css" media="screen"/>
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css" media="screen"/>
+        <link rel="stylesheet" href="/public/css/nizzle.css" media="screen"/>
         <style>
             body {
                 padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -49,16 +49,72 @@
             ];
 
             $scope.setActiveAgent = function(id) {
-                var index = 0;
-                
-                for (index = 0; index < $scope.agents.length; index++) {
+                for (var index = 0; index < $scope.agents.length; index++) {
                     if ($scope.agents[index].id === id) break;
                 }
 
                 $scope.activeAgentIndex = index;
+                $scope.activeAgentId = id;
             };
 
             $scope.activeAgentIndex = 0;
+            $scope.activeAgentId = $scope.agents.length > 0 ? $scope.agents[0].id : 0;
+        }
+        
+        function fileSelected() {
+            var file = document.getElementById('fileToUpload').files[0];
+
+            if (file) {
+                var fileSize;
+                
+                if (file.size > 1024 * 1024) {
+                    fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
+                } else {
+                    fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+                }
+
+                $('#fileName').val(file.name);
+                $('#fileSize').html('Size: ' + fileSize);
+                $('#fileType').html('Type: ' + file.type);
+            }
+        }
+        
+        function uploadFile(id) {
+            var xhr = new window.XMLHttpRequest();
+            var fd = $('#uploadForm').serialize();
+
+            /* event listners */
+            xhr.upload.addEventListener("progress", uploadProgress, false);
+            xhr.addEventListener("load", uploadComplete, false);
+            xhr.addEventListener("error", uploadFailed, false);
+            xhr.addEventListener("abort", uploadCanceled, false);
+            /* Be sure to change the url below to the url of your upload server side script */
+            xhr.open("POST", "/agent/" + id + "/upload");
+            xhr.send(fd);
+            return false;
+        }
+        
+        function uploadProgress(evt) {
+            if (evt.lengthComputable) {
+                var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
+            }
+            else {
+                document.getElementById('progressNumber').innerHTML = 'unable to compute';
+            }
+        }
+
+        function uploadComplete(evt) {
+            /* This event is raised when the server send back a response */
+            //alert("BAM!!!1");
+        }
+
+        function uploadFailed(evt) {
+            alert("There was an error attempting to upload the file.");
+        }
+
+        function uploadCanceled(evt) {
+            alert("The upload has been canceled by the user or the browser dropped the connection.");
         }
     </script>
 
@@ -91,7 +147,7 @@
                 <div class="row">
                     <div class="span6">
                         <ul class="agents">
-                            <li ng-repeat="agent in agents">
+                            <li ng-repeat="agent in agents" ng-show="activeAgentId != agent.id">
                                 <div class="agent" ng-click="setActiveAgent(agent.id)">
                                     <h1>{{agent.name}}</h1>
                                     <p>{{agent.machine}}</p>
@@ -102,17 +158,28 @@
                     <div class="span6">
                         <div class="activeAgent">
                             <h1>{{agents[activeAgentIndex].name}}</h1>
-                            <p>
+                            <p style="border-bottom: 1px solid black">
                                 {{agents[activeAgentIndex].machine}}
                             </p>
+                            
+                            <form id="uploadForm" enctype="multipart/form-data" method="post" action="/agent/1/upload">
+                                <div class="row">
+                                    <input type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/>
+                                    <input type="hidden" name="fileName" id="fileName"/>
+                                    <input type="button" onclick="uploadFile({{agents[activeAgentIndex].id}})" value="Upload" />
+                                </div>
+                                <div id="fileSize"></div>
+                                <div id="fileType"></div>
+                                <div id="progressNumber"></div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
-        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="/public/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/public/js/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="/public/js/angular.min.js"></script>
     </body>
 </html>

@@ -90,8 +90,8 @@
     <Compile Include="AppHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Routes\AgentService.cs" />
     <Compile Include="Routes\HelloService.cs" />
-    <Compile Include="Routes\OverviewService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -110,7 +110,9 @@
     <Content Include="Public\css\bootstrap.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Public\css\nizzle.css" />
+    <Content Include="Public\css\nizzle.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Public\img\glyphicons-halflings-white.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
